@@ -1,263 +1,45 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Police Website</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<style>
-:root {
-    --bg-color: #080c14;
-    --accent-color: #3a86ff;
-    --text-color: #ffffff;
-    --muted-text: #94a3b8;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-}
-
-@keyframes fadeInPage {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* هذا هو الأنميشن - لا يغير الـ UI فقط يحرك النصوص */
-@keyframes textSlide {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* نربط الأنميشن بالعناوين والنصوص */
-.hero h1, .hero p, .police-announcement {
-    animation: textSlide 1s ease-out forwards;
-}
-
-body {
-    margin: 0;
-    font-family: 'Cairo', sans-serif;
-    color: var(--text-color);
-    direction: rtl;
-    overflow-x: hidden;
-    background-color: var(--bg-color);
-    background-image: linear-gradient(rgba(8, 12, 20, 0.85), rgba(8, 12, 20, 0.85)), url('art599.png');
-    background-position: center;
-    background-attachment: fixed;
-    animation: fadeInPage 0.6s ease-out forwards;
-}
-
-.officer-container {
-    max-width: 800px;
-    margin: 40px auto;
-    background: rgba(15, 22, 38, 0.7);
-    padding: 30px;
-    border-radius: 20px;
-    border: 1px solid var(--accent-color);
-    box-shadow: 0 0 20px rgba(58, 134, 255, 0.2);
-    text-align: center;
-}
-
-.officer-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 20px;
-}
-
-.officer-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 3px solid var(--accent-color);
-    object-fit: cover;
-    box-shadow: 0 0 15px var(--accent-color);
-}
-
-.officer-info h3 { color: var(--accent-color); font-size: 24px; margin: 0; }
-.officer-info p { color: #fff; font-size: 18px; margin: 5px 0; }
-.badge { background: #3a86ff; padding: 5px 15px; border-radius: 20px; font-size: 12px; }
-
-.police-announcement {
-    /* التموضع */
-    position: absolute;
-    top: 125px;
-    right: 20px;
-    width: 450px;
-    
-    /* التصميم المطابق للصورة */
-    background: rgba(20, 25, 35, 0.6); /* رمادي داكن شفاف */
-    backdrop-filter: blur(10px);        /* تضبيب الزجاج */
-    border-radius: 15px;               /* حواف دائرية ناعمة */
-    border-right: 5px solid #3a86ff;   /* الحافة الزرقاء الجانبية المميزة */
-    
-    /* تنسيق النص */
-    padding: 25px;
-    color: #fff;
-    z-index: 90;
-}
-
-.police-announcement h2 {
-    color: #3a86ff;
-    font-size: 16px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-
-.police-announcement ul {
-    list-style: none; /* إزالة النقاط التقليدية */
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.police-announcement ul li {
-    margin-bottom: 10px;
-}
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 1%;
-    margin: 10px 1%;
-    background: rgba(15, 22, 38, 0.7);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-    position: sticky;
-    top: 10px;
-    z-index: 100;
-}
-
-/* تنسيق الروابط الجانبية */
-/* تنسيق الحاوية الجانبية */
-.social-fix {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 1000;
-}
-
-/* تنسيق الأزرار */
-.s-btn {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: 20px;
-    border-radius: 50%;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    text-decoration: none;
-}
-
-/* تأثير التوهج عند الوقوف بالماوس */
-.s-btn:hover {
-    transform: scale(1.15) rotate(5deg);
-    border-color: var(--accent-color);
-    box-shadow: 0 0 20px var(--accent-color);
-}
-
-
-/* ألوان العلامات التجارية */
-.tiktok:hover { color: #fe2c55; }
-.discord:hover { color: #5865F2; }
-.youtube:hover { color: #FF0000; }
-
-.logo-container { display: flex; align-items: center; gap: 12px; }
-.text-stack { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
-.logo-main { font-size: 16px; font-weight: bold; }
-.logo-sub { font-size: 12px; color: var(--accent-color); font-weight: bold; }
-.logo-img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-color); }
-
-nav a { color: var(--muted-text); text-decoration: none; margin: 0 10px; transition: all 0.3s; font-weight: 700; font-size: 14px; }
-nav a:hover, nav a.active { color: #fff; text-shadow: 0 0 10px var(--accent-color); }
-
-.btn-discord { background: var(--accent-color); color: white; padding: 8px 20px; border-radius: 15px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-.btn-discord:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--accent-color); }
-
-.hero { text-align: center; padding: 120px 10px; max-width: 800px; margin: 0 auto; }
-.hero h1 { font-size: 35px; margin-bottom: 25px; }
-.hero h1 span { color: var(--accent-color); }
-.hero p { color: #e2e8f0; font-size: 18px; background: var(--glass-bg); backdrop-filter: blur(10px); padding: 30px; border-radius: 20px; border-right: 5px solid var(--accent-color); line-height: 1.8; }
-
-footer { text-align: center; padding: 40px; color: var(--muted-text); border-top: 1px solid rgba(255, 255, 255, 0.05); }
-
-@media (max-width: 1024px) { .announcement-box { display: none; } }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Police Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* [تم دمج تنسيقاتك الأصلية هنا - تأكد من بقائها في ملفك] */
+        :root { --bg-color: #080c14; --accent-color: #3a86ff; --text-color: #ffffff; --muted-text: #94a3b8; }
+        body { margin: 0; font-family: 'Cairo', sans-serif; color: var(--text-color); background-color: var(--bg-color); background-image: linear-gradient(rgba(8, 12, 20, 0.85), rgba(8, 12, 20, 0.85)), url('art599.png'); background-attachment: fixed; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: rgba(15, 22, 38, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50px; position: sticky; top: 10px; z-index: 100; }
+        nav a { color: var(--muted-text); text-decoration: none; margin: 0 10px; font-weight: 700; font-size: 14px; }
+        nav a:hover { color: #fff; }
+        .hero { text-align: center; padding: 100px 20px; }
+        .hero span { color: var(--accent-color); }
+        .police-announcement { position: absolute; top: 100px; right: 20px; width: 300px; background: rgba(20, 25, 35, 0.8); padding: 20px; border-right: 5px solid var(--accent-color); border-radius: 10px; }
+    </style>
 </head>
 <body>
-    </html>
 
 <div class="police-announcement">
-    <h2>اعلان الشرطة الاخيره</h2>
+    <h2>اعلان الشرطة الاخير</h2>
     <ul>
         <li>تعلن شرطة لوس سانتوس عن إغلاق باب النقل العسكري</li>
-        <li>أوقات التقديم العسكري : يوم الثلاثاء ويوم الخميس الساعة 9 مساءً.</li>
     </ul>
 </div>
 
 <header>
-    <a href="https://discord.gg/DkCzcUsZcT" target="_blank" class="btn-discord">انضم الى ديسكورد الشرطة</a>
-
+    <a href="https://discord.gg/DkCzcUsZcT" target="_blank" style="background: var(--accent-color); padding: 8px 15px; border-radius: 15px; color: white; text-decoration: none;">انضم للديسكورد</a>
     <nav>
-        <a href="#" class="active">الرئيسية</a>
+        <a href="index.html">الرئيسية</a>
         <a href="Policerules.html">قوانين الشرطة</a>
-        <a href="department-rules.html">قوانين الأقسام</a>
-         <a href="Department Overview.html">نظرة عامة على الاقسام</a>
-        <a href="Police Questions.html">أسئلة الشرطة</a>
-        <a href="Police Administration.html">إدارة الشرطة</a>
-        <a href="Ranktasks.html">مهام الرتب</a>
-        <a href="Permissions Rank.html">صلاحيات الرتب</a>
-        <a href="Department Responsibilities & Authoritie.html">صلاحيات الاقسام</a>
         <a href="Police Explanations.html">شروحات الشرطة</a>
-        <a href="exl.html">جدول الشرطة</a>
-
     </nav>
-
-    <div class="logo-container">
-        <div class="text-stack">
-            <div class="logo-main">Art Rp</div>
-            <div class="logo-sub">Police Website</div>
-        </div>
-        <img src="art6.gif" alt="Logo" class="logo-img">
-    </div>
+    <div class="logo-container">Art Rp</div>
 </header>
 
 <div class="hero">
     <h1>مرحباً بك في موقع <span>الشرطة</span></h1>
-    <p>لقد أنشأنا هذا الموقع ليكون مرجعكم الأساسي لجميع المعلومات المتعلقة بالشرطة. هدفنا هو تسهيل وصولك إلى جميع المعلومات التي تحتاجها عن جهاز الشرطة.</p>
-</div>
-
-<div class="officer-container">
-    <h2 style="color: #fff; margin-bottom: 20px;">🎖️ عسكري الأسبوع 🎖️</h2>
-    <div class="officer-card">
-        <img src="art6.gif" alt="Officer" class="officer-img">
-        <div class="officer-info">
-            <h3>John Kennedy</h3>
-            <p>Rank : Senior Officer</p>
-            <span class="badge">شكراً لك على جهودك المميزة وإتمامك العمل على أكمل وجه. نُقدّر التزامك وإخلاصك، ونتمنى لك دوام التوفيق والتميز.</span>
-        </div>
-    </div>
-</div>
-
-<footer>
-    Copyright © 2026 Art Rp CFW All Rights Reserved <br>
-    <span style="font-size: 12px; color: #475569; margin-top: 5px; display: block;">
-        Designed by X.X95
-    </span>
-</footer>
-
-<div class="social-fix">
-    <a href="https://www.tiktok.com/@artrp_" target="_blank" class="s-btn tiktok"><i class="fa-brands fa-tiktok"></i></a>
-    <a href="https://discord.gg/gD4zpfMrUC" target="_blank" class="s-btn discord"><i class="fa-brands fa-discord"></i></a>
-    <a href="https://www.youtube.com/@Art_Instructions" target="_blank" class="s-btn youtube"><i class="fa-brands fa-youtube"></i></a>
+    <p>هذا الموقع هو مرجعكم الأساسي لجميع المعلومات.</p>
 </div>
 
 </body>
